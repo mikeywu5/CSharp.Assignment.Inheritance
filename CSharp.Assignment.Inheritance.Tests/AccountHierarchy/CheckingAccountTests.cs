@@ -10,9 +10,6 @@ namespace CSharp.Assignments.Classes.AccountHierarchy.Tests
         [Test]
         public void Constructor()
         {
-#if !DEBUG
-        Assert.Multiple(() => {
-#endif
             var assert = new TypeAssert<CheckingAccount>();
             assert.Extends<Account>();
             assert.Constructor(
@@ -29,17 +26,11 @@ namespace CSharp.Assignments.Classes.AccountHierarchy.Tests
             );
             // new CheckingAccount(11.5m, -0.05m);
             assert.Catch<ArgumentOutOfRangeException>(() => assert.New(11.5m, -0.05m));
-#if !DEBUG
-        });
-#endif
         }
 
         [Test]
         public void Credit()
         {
-#if !DEBUG
-        Assert.Multiple(() => {
-#endif
             var assert = new TypeAssert<CheckingAccount>();
             assert.Method<bool>(
                 "Credit",
@@ -56,17 +47,11 @@ namespace CSharp.Assignments.Classes.AccountHierarchy.Tests
             Assert.AreEqual(1496.5m, o.Balance);
             Assert.IsFalse(o.Credit(2m));
             Assert.AreEqual(1496.5m, o.Balance);
-#if !DEBUG
-    });
-#endif
         }
 
         [Test]
         public void Debit()
         {
-#if !DEBUG
-        Assert.Multiple(() => {
-#endif
             var assert = new TypeAssert<CheckingAccount>();
             assert.Method<bool>(
                 "Debit",
@@ -83,9 +68,6 @@ namespace CSharp.Assignments.Classes.AccountHierarchy.Tests
             Assert.AreEqual(496.5m, o.Balance);
             Assert.IsFalse(o.Debit(494.0m));
             Assert.AreEqual(496.5m, o.Balance);
-#if !DEBUG
-});
-#endif
         }
     }
 }

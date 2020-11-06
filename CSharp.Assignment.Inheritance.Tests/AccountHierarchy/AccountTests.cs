@@ -9,10 +9,6 @@ namespace CSharp.Assignments.Classes.AccountHierarchy.Tests
         [Test]
         public void Constructor()
         {
-#if !DEBUG
-            Assert.Multiple(() =>
-            {
-#endif
             var assert = new TypeAssert<Account>();
             assert.Constructor(
                BindingFlags.Instance |
@@ -24,17 +20,10 @@ namespace CSharp.Assignments.Classes.AccountHierarchy.Tests
             account = assert.New(1000.5m);
             Assert.AreEqual(1000.5m, account.Balance);
             assert.Catch<ArgumentOutOfRangeException>(() => account = assert.New(-0.5m));
-#if !DEBUG
-            });
-#endif
         }
         [Test]
         public void Balance()
         {
-#if !DEBUG
-            Assert.Multiple(() =>
-            {
-#endif
             var assert = new TypeAssert<Account>();
             var p = assert.Property<decimal>(
                 "Balance",
@@ -51,18 +40,11 @@ namespace CSharp.Assignments.Classes.AccountHierarchy.Tests
             Assert.AreEqual(123.45m, account.Balance);
             assert.Catch<ArgumentOutOfRangeException>(() => account.Balance = -0.05m);
             Assert.AreEqual(123.45m, account.Balance);
-#if !DEBUG
-            });
-#endif
         }
 
         [Test]
         public void Credit()
         {
-#if !DEBUG
-            Assert.Multiple(() =>
-            {
-#endif
             var assert = new TypeAssert<Account>();
             var p = assert.Method<bool>(
                 "Credit",
@@ -79,18 +61,11 @@ namespace CSharp.Assignments.Classes.AccountHierarchy.Tests
             Assert.IsTrue(credit);
             assert.Catch<ArgumentOutOfRangeException>(() => account.Credit(-0.45m));
             Assert.AreEqual(223.45m, account.Balance);
-#if !DEBUG
-            });
-#endif
         }
 
         [Test]
         public void Debit()
         {
-#if !DEBUG
-            Assert.Multiple(() =>
-            {
-#endif
             var assert = new TypeAssert<Account>();
             var p = assert.Method<bool>(
                 "Debit",
@@ -110,9 +85,6 @@ namespace CSharp.Assignments.Classes.AccountHierarchy.Tests
             Assert.AreEqual(76.55m, account.Balance);
             assert.Catch<ArgumentOutOfRangeException>(() => account.Debit(-0.01m));
             Assert.AreEqual(76.55m, account.Balance);
-#if !DEBUG
-            });
-#endif
         }
     }
 }

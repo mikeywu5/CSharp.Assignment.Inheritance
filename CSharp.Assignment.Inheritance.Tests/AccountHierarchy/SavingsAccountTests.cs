@@ -10,9 +10,6 @@ namespace CSharp.Assignments.Classes.AccountHierarchy.Tests
         [Test]
         public void Constructor()
         {
-#if !DEBUG
-        Assert.Multiple(() => {
-#endif
             var assert = new TypeAssert<SavingsAccount>();
             assert.Extends<Account>();
             assert.Constructor(
@@ -29,17 +26,11 @@ namespace CSharp.Assignments.Classes.AccountHierarchy.Tests
             );
             // new SavingsAccount(11.5m, -0.05m);
             assert.Catch<ArgumentOutOfRangeException>(() => assert.New(11.5m, -0.05m));
-#if !DEBUG
-        });
-#endif
         }
 
         [Test]
         public void Credit()
         {
-#if !DEBUG
-        Assert.Multiple(() => {
-#endif
             var assert = new TypeAssert<SavingsAccount>();
             assert.Method<bool>(
                 "Credit",
@@ -56,17 +47,11 @@ namespace CSharp.Assignments.Classes.AccountHierarchy.Tests
             Assert.AreEqual(1500m, o.Balance);
             Assert.IsTrue(o.Credit(2m));
             Assert.AreEqual(1502m, o.Balance);
-#if !DEBUG
-    });
-#endif
         }
 
         [Test]
         public void Debit()
         {
-#if !DEBUG
-        Assert.Multiple(() => {
-#endif
             var assert = new TypeAssert<SavingsAccount>();
             assert.Method<bool>(
                 "Debit",
@@ -85,17 +70,11 @@ namespace CSharp.Assignments.Classes.AccountHierarchy.Tests
             Assert.AreEqual(509m, o.Balance);
             Assert.IsTrue(o.Debit(509m));
             Assert.AreEqual(0m, o.Balance);
-#if !DEBUG
-});
-#endif
         }
 
         [Test]
         public void CalculateInterest()
         {
-#if !DEBUG
-        Assert.Multiple(() => {
-#endif
             var assert = new TypeAssert<SavingsAccount>();
             assert.Method<decimal>(
                 "CalculateInterest",
@@ -107,9 +86,6 @@ namespace CSharp.Assignments.Classes.AccountHierarchy.Tests
             decimal rate = 0.035m;
             o = assert.New(1234m, rate);
             Assert.AreEqual(43.19m, o.CalculateInterest());
-#if !DEBUG
-});
-#endif
         }
     }
 }

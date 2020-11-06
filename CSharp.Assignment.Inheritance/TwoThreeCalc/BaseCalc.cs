@@ -8,12 +8,5 @@ namespace CSharp.Assignment.Inheritance.TwoThreeCalc
 {
     public class BaseCalc
     {
-        protected BaseCalc()
-        {
-        }
-        public virtual int Calculate()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
